@@ -1,0 +1,6 @@
+﻿  functions.cpp
+C:\Users\User\Desktop\C++\kursovaya\functions.cpp(46,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  kursovaya.cpp
+  vvod-vivod.cpp
+  Создание кода...
+  kursovaya.vcxproj -> C:\Users\User\Desktop\C++\kursovaya\x64\Debug\kursovaya.exe
