@@ -1,280 +1,232 @@
 #include "header.h"
 
-// Меню выбора действий
-int menu()
-{
-	setlocale(LC_ALL, "Russian");
-	int choise;
-	cout << endl << endl << "Выберите действия (введите цифру,соответствующую вашему выбору): " << endl;
-	cout << "1 - Покатать таблицу растений " << endl;
-	cout << "2 - Добавить новое растение " << endl;
-	cout << "3 - Узнать какие растения будут цвести в определенный промежуток времени" << endl;
-	cout << "4 - Отметить для удаления" << endl;
-	cout << "5 - Снять маркер на удаление" << endl;
-	cout << "6 - Удалить отмеченных" << endl;
-	cout << "7 - Выход" << endl;
+char menu() {
+    setlocale(LC_ALL, "Russian");
+    char choise;
+    cout << endl << endl << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёСЏ (РІРІРµРґРёС‚Рµ С†РёС„СЂСѓ,СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ РІР°С€РµРјСѓ РІС‹Р±РѕСЂСѓ): " << endl;
+    cout << "1 - РџРѕРєР°С‚Р°С‚СЊ С‚Р°Р±Р»РёС†Сѓ СЂР°СЃС‚РµРЅРёР№ " << endl;
+    cout << "2 - Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРµ СЂР°СЃС‚РµРЅРёРµ " << endl;
+    cout << "3 - РЈР·РЅР°С‚СЊ РєР°РєРёРµ СЂР°СЃС‚РµРЅРёСЏ Р±СѓРґСѓС‚ С†РІРµСЃС‚Рё РІ РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РїСЂРѕРјРµР¶СѓС‚РѕРє РІСЂРµРјРµРЅРё" << endl;
+    cout << "4 - РћС‚РјРµС‚РёС‚СЊ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ" << endl;
+    cout << "5 - РЎРЅСЏС‚СЊ РјР°СЂРєРµСЂ РЅР° СѓРґР°Р»РµРЅРёРµ" << endl;
+    cout << "6 - РЈРґР°Р»РёС‚СЊ РѕС‚РјРµС‡РµРЅРЅС‹С…" << endl;
+    cout << "7 - Р’С‹РІР°РѕРґ РѕРїСЂРµРґРµР»РµРЅРЅРѕР№ Р·Р°РїРёСЃРё" << endl;
+    cout << "8 - Р’С‹РІРµСЃС‚Рё СЃРїСЂР°РєСѓ Рѕ Р·Р°РґР°РЅРёРё" << endl;
+    cout << "9 - Р’С‹С…РѕРґ" << endl;
 
-	cin >> choise;
-	return choise;
+    cin >> choise;
+
+    return choise;
 }
 
-
-
-
-// Блок ввода
-void write_new(fstream& p)
-{
-	SetConsoleCP(1251);   // Для русского языка
-	
-	p.clear();
-	p.seekg(0, fstream::end);
-	Shop zap;
-	zap = vvod(p);   // Ввод записи
-	write(p, zap, 0);    // Записываем запись в файл
+void write_new(fstream& p) {
+    SetConsoleCP(1251);
+    p.clear();
+    p.seekg(0, fstream::end);
+    Shop zap;
+    zap = vvod(p);
+    write(p, zap, 0);
 }
 
-
-Shop vvod(fstream& p)
-{
-	Shop zap;
-	setlocale(LC_ALL, "rus");
-	cout << "Введите название сорта:  "; cin >> zap.name;
-	cout << "Введите цвет растения:  "; cin >> zap.color;
-	cout << "Введите высоту взрослого растения:  "; cin >> zap.hight;
-	cout << "Введите кол-во дней от посадки до начала цветения:  "; cin >> zap.grow;
-	cout << "Введите сколько дней продолжнается цветение:  ";  cin >> zap.bloom;
-	strcpy(zap.marka, "+");
-	return zap;
+Shop vvod(fstream& p) {
+    Shop zap;
+    setlocale(LC_ALL, "rus");
+    cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЃРѕСЂС‚Р°:  ";
+    cin >> zap.name;
+    cout << "Р’РІРµРґРёС‚Рµ С†РІРµС‚ СЂР°СЃС‚РµРЅРёСЏ:  ";
+    cin >> zap.color;
+    cout << "Р’РІРµРґРёС‚Рµ РІС‹СЃРѕС‚Сѓ РІР·СЂРѕСЃР»РѕРіРѕ СЂР°СЃС‚РµРЅРёСЏ:  ";
+    cin >> zap.hight;
+    cout << "Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ РґРЅРµР№ РѕС‚ РїРѕСЃР°РґРєРё РґРѕ РЅР°С‡Р°Р»Р° С†РІРµС‚РµРЅРёСЏ:  ";
+    cin >> zap.grow;
+    cout << "Р’РІРµРґРёС‚Рµ СЃРєРѕР»СЊРєРѕ РґРЅРµР№ РїСЂРѕРґРѕР»Р¶РЅР°РµС‚СЃСЏ С†РІРµС‚РµРЅРёРµ:  ";
+    cin >> zap.bloom;
+    strcpy(zap.marka, "+");
+    return zap;
 }
 
-
-// Запись в файл
-void write(fstream& p, Shop zap, int num)
-{
-	p.clear();
-	if (num)
-	{
-		p.seekg((num - 1) * len, ios::beg);
-	}
-	p.write((char*)&zap, len);
+void write(fstream& p, Shop zap, int num) {
+    p.clear();
+    if (num) {
+        p.seekg((num - 1) * len, ios::beg);
+    }
+    p.write((char*)&zap, len);
 }
 
-
-
-
-
-
-// Блок вывода
-void vivod(fstream& p)
-{
-	SetConsoleCP(1251);   // Для русского языка
-	p.clear();    // Чистим поток
-	p.seekg(0, ios::beg);
-	Shop zap;
-	cout << dividing_line << endl;
-	cout<< shapka;
-	cout << dividing_line << endl;
-	while (read(p, zap))
-	{
-		print(zap);
-	}
-	cout << endl << dividing_line << endl;
+void vivod(fstream& p) {
+    SetConsoleCP(1251);
+    p.clear();
+    p.seekg(0, ios::beg);
+    Shop zap;
+    cout << dividing_line << endl;
+    cout << shapka;
+    cout << dividing_line << endl;
+    while (read(p, zap)) {
+        print(zap);
+    }
+    cout << endl << dividing_line << endl;
 }
 
-void print(Shop zap) 
-{
-	setlocale(LC_ALL, "ru");
-	cout << endl
-		<< setw(15) << zap.name
-		<< setw(15) << zap.color
-		<< setw(15) << zap.hight
-		<< setw(25) << zap.grow
-		<< setw(25) << zap.bloom
-		<< setw(15) << zap.marka;
+void print(Shop zap) {
+    setlocale(LC_ALL, "ru");
+    cout << endl
+         << setw(15) << zap.name << setw(15) << zap.color << setw(15) << zap.hight << setw(25) << zap.grow
+         << setw(25) << zap.bloom << setw(15) << zap.marka;
 }
 
-
-
-// Чтение файла
-fstream& read(fstream& p, Shop& zap, int num)
-{
-	p.clear();
-	if (num)
-		p.seekg((num - 1) * len, ios::beg);
-	p.read((char*)&zap, len);
-	return p;
+fstream& read(fstream& p, Shop& zap, int num) {
+    p.clear();
+    if (num) p.seekg((num - 1) * len, ios::beg);
+    p.read((char*)&zap, len);
+    return p;
 }
 
+void print_res_bloom(fstream& p, int start_bloom[], int end_bloom[]) {
+    p.clear();
+    Shop zap;
+    p.seekp(0, ios::beg);
 
+    // FOR DEBUGGING COMMENT OUT LINES upper then int now_date = 145, UNCOMMENT int now_date = 145;
+    SYSTEMTIME st;
+    GetLocalTime(&st);
+    int array_now_date[2];
+    array_now_date[0] = st.wDay;
+    array_now_date[1] = st.wMonth;
+    int now_date = perevod_dat(array_now_date);
 
+    // int now_date = 145;
 
+    int count = 0;
+    int count_index = 0;
 
+    int start_otr;
+    int end_otr;
+    start_otr = perevod_dat(start_bloom);
+    end_otr = perevod_dat(end_bloom);
 
-// Функция, обеспечивающая индивидуальное задание
-void print_res_bloom(fstream& p, int start_bloom[], int end_bloom[])
-{
-	p.clear();
-	Shop zap;
-	p.seekp(0, ios::beg);
+    int array[2][100];
 
+    while (read(p, zap)) {
+        if (((now_date + zap.grow) <= (start_otr)) && ((end_otr) <= (now_date + zap.grow + zap.bloom))) {
+            array[0][count_index] = count;
+            array[1][count_index] = zap.hight;
+            count_index++;
+        }
+        count++;
+    }
 
-	// ДЛЯ ОТЛАДКИ ЗАКОММЕНТИРОВАТЬ 123-128 СТРОКИ, РАССКОММЕНТИРОВАТЬ 132	
-	// Узнаем какая сейчас дата
-	SYSTEMTIME st;
-	GetLocalTime(&st);
-	int array_now_date[2];
-	array_now_date[0] = st.wDay;
-	array_now_date[1] = st.wMonth;
-	int now_date = perevod_dat(array_now_date);
-	
+    int* array_max_to_min = new int[count_index];
+    int ind = 0;
+    for (int i = 0; i < count_index; i++) {
+        int not_main_znach = array[1][0];
+        for (int j = 0; j < count_index; j++) {
+            if (array[1][j] >= not_main_znach) {
+                not_main_znach = array[1][j];
+                array_max_to_min[i] = array[0][j];
+                ind = j;
+            }
+        }
+        array[1][ind] = -100;
+    }
 
-	// Отладочная переменная для сегодняшней даты
-	//int now_date = 145;
-	
-	
-	// Переменные счетчики
-	int count = 0; int count_index = 0;
+    cout << dividing_line << endl;
+    cout << shapka;
+    cout << dividing_line << endl;
+    for (int i = 0; i < count_index; i++)
 
-	// Промежуток необходимого цветения в днях
-	int start_otr;
-	int end_otr;
-	start_otr = perevod_dat(start_bloom);
-	end_otr = perevod_dat(end_bloom);
-	
-	// Массив значений высоты и номеров строк
-	int array[2][100];
-
-	// Узнаем подходит ли растение, заносим в этот список
-	while (read(p, zap))
-	{
-		if (((now_date + zap.grow) <= (start_otr)) && ((end_otr) <= (now_date + zap.grow + zap.bloom)))
-		{
-			array[0][count_index] = count;
-			array[1][count_index] = zap.hight;
-			count_index++;
-		}
-		count++;
-	}
-
-	// Одномерный массив со значениями для записей под нужными номерами
-	int* array_max_to_min = new int[count_index];
-	int ind = 0;
-	for (int i = 0; i < count_index; i++)
-	{
-		// Находим максимальную высоту
-		int not_main_znach = array[1][0];
-		for (int j = 0; j < count_index; j++)
-		{
-			if (array[1][j] >= not_main_znach)
-			{
-				not_main_znach = array[1][j];
-				array_max_to_min[i] = array[0][j];
-				ind = j;
-			}
-		}
-
-		// Меняем макс на мин чтобы оно не мешалось
-		array[1][ind] = -100;
-	}
-
-	// Выводим
-	cout << dividing_line << endl;
-	cout << shapka;
-	cout << dividing_line << endl;
-	for (int i = 0; i < count_index; i++)
-
-	{
-		if (read(p, zap, array_max_to_min[i] +1))
-		{
-			print(zap);
-		}	
-	}
-	cout << endl << dividing_line << endl;
+    {
+        if (read(p, zap, array_max_to_min[i] + 1)) {
+            print(zap);
+        }
+    }
+    cout << endl << dividing_line << endl;
 }
 
+int perevod_dat(int array[]) {
+    int days_in_maonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int count = 0;
 
+    int day = array[0];
+    int month = array[1];
 
-
-// Фунция,переводящая дату в кол-во дней от начала года
-int perevod_dat(int array[])
-{
-	// Массив с кол-вом дней в каждом месяце
-	int days_in_maonth[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-	int count = 0;
-
-	int day = array[0];
-	int month = array[1];
-
-	for (int i = 0; i < month; i++)
-	{
-		count += days_in_maonth[i];
-	}
-	count += day;
-	return count;
+    for (int i = 0; i < month; i++) {
+        count += days_in_maonth[i];
+    }
+    count += day;
+    return count;
 }
 
+void metka_for_delete(fstream& p, char* sort) {
+    p.clear();
+    Shop zap;
+    p.seekp(0, ios::beg);
 
-
-
-
-// Блок для меток
-// Отметка на удаление
- void metka_for_delete(fstream& p, char* sort)
-{
-	 p.clear();
-	 Shop zap;
-	 p.seekp(0, ios::beg);
-
-	 for (int i = 1; read(p, zap, i); i++)
-	 {
-		 if (strcmp(zap.name, sort) == 0)
-		 {
-			 strcpy_s(zap.marka, "-");
-			 write(p, zap, i);
-			 break;
-		 }
-	 }
+    for (int i = 1; read(p, zap, i); i++) {
+        if (strcmp(zap.name, sort) == 0) {
+            strcpy_s(zap.marka, "-");
+            write(p, zap, i);
+            break;
+        }
+    }
 }
 
-
-
-
-// Снять отметки на удаление
-void delete_marks(fstream& p)
-{
-	p.clear();
-	Shop zap;
-	p.seekp(0, fstream::beg);
-	for (int i = 1; read(p, zap, i); i++)
-	{
-		if (strcmp(zap.marka, "-") == 0)
-		{
-			strcpy_s(zap.marka, "+");
-			write(p, zap, i);
-		}
-	}
+void delete_marks(fstream& p) {
+    p.clear();
+    Shop zap;
+    p.seekp(0, fstream::beg);
+    for (int i = 1; read(p, zap, i); i++) {
+        if (strcmp(zap.marka, "-") == 0) {
+            strcpy_s(zap.marka, "+");
+            write(p, zap, i);
+        }
+    }
 }
 
+void delet_who_with_mark(fstream& p) {
+    fstream p2("dop.txt", fstream::app);
+    p.clear();
+    Shop zap;
+    p.seekp(0, fstream::beg);
+    for (int i = 1; read(p, zap, i); i++) {
+        if (strcmp(zap.marka, "+") == 0) {
+            write(p2, zap);
+        }
+    }
+    p2.close();
+    p.close();
+    remove(fname);
+    rename("dop.txt", fname);
+    p.open(fname, fstream::in | fstream::out | fstream::binary);
+}
 
+void vivod_opr_zap(fstream& p, char* sort) {
+    p.clear();
+    Shop zap;
+    p.seekp(0, ios::beg);
 
+    for (int i = 1; read(p, zap, i); i++) {
+        if (strcmp(zap.name, sort) == 0) {
+            print(zap);
+            break;
+        }
+    }
+}
 
-// Удалить отмеченные записи
-void delet_who_with_mark(fstream& p)
-{
-	fstream p2("dop.txt", fstream::app);
-	p.clear();
-	Shop zap;
-	p.seekp(0, fstream::beg);
-	for (int i = 1; read(p, zap, i); i++)
-	{
-		if (strcmp(zap.marka, "+") == 0)
-		{
-			write(p2, zap);
-		}
-	}
-	p2.close();
-	p.close();
-	remove(fname);
-	rename("dop.txt", fname);
-	p.open(fname, fstream::in | fstream::out | fstream::binary);
+void vivod_spravki() {
+    cout << "" << endl;
+    cout << "" << endl;
+    cout << "Р¦РІРµС‚РѕС‡РЅР°СЏ С„РёСЂРјР° В«РљСЂР°СЃРЅР°СЏ Р»РёР»РёСЏВ» Р·Р°РєР°Р·Р°Р»Р° РїСЂРѕРіСЂР°РјРјСѓ РѕР±СЂР°Р±РѕС‚РєРё РёРЅС„РѕСЂРјР°С†РёРё РѕР±РѕРґРЅРѕР»РµС‚РЅРёС… С†РІРµС‚Р°С…."
+         << endl;
+    cout << "Рћ РєР°Р¶РґРѕРј СЃРѕСЂС‚Рµ Р»РµС‚РЅРёРєР° РІ С„Р°Р№Р» Р·Р°РїРёСЃС‹РІР°СЋС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёРµ РґР°РЅРЅС‹Рµ : " << endl;
+    cout << "" << endl;
+    cout << "	- РќР°Р·РІР°РЅРёРµ СЃРѕСЂС‚Р°" << endl;
+    cout << "	- Р¦РІРµС‚РѕРІР°СЏ РіР°РјРјР° " << endl;
+    cout << "	- Р’С‹СЃРѕС‚Р° РІР·СЂРѕСЃР»РѕРіРѕ СЂР°СЃС‚РµРЅРёСЏ" << endl;
+    cout << "	- Р’СЂРµРјСЏ РІ РґРЅСЏС… РѕС‚ РґРЅСЏ РїРѕСЃР°РґРєРё РґРѕ РЅР°С‡Р°Р»Р° С†РІРµС‚РµРЅРёСЏ" << endl;
+    cout << "	- РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ С†РІРµС‚РµРЅРёСЏ" << endl;
+    cout << "" << endl;
+    cout << "РџСЂРѕРіСЂР°РјРјР° СЃРѕСЃС‚Р°РІР»СЏРµС‚ СЃРїРёСЃРѕРє СЃРѕСЂС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ, Р±СѓРґСѓС‡Рё РІС‹СЃР°Р¶РµРЅС‹ РІ РґРµРЅСЊ Р·Р°РїСЂРѕСЃР°," << endl;
+    cout << "РѕР±РµСЃРїРµС‡РёРІР°СЋС‚ С†РІРµС‚РµРЅРёРµ РІ Р·Р°РґР°РЅРЅС‹Р№ РІСЂРµРјРµРЅРЅРѕР№РёРЅС‚РµСЂРІР°Р»(РґР°С‚Р° РЅР°С‡Р°Р»Р° С†РІРµС‚РµРЅРёСЏ, " << endl;
+    cout << "Рё РґР°С‚Р° РєРѕРЅС†Р° С†РІРµС‚РµРЅРёСЏ Р·Р°РґР°СЋС‚СЃСЏ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹)" << endl;
+    cout << "РЎРѕСЂС‚Р° РІ СЃРїРёСЃРєРµ СЂР°СЃРїРѕР»РѕР¶РёС‚СЊ РІ РїРѕСЂСЏРґРєРµ СѓРјРµРЅСЊС€РµРЅРёСЏ РІС‹СЃРѕС‚С‹ СЂР°СЃС‚РµРЅРёР№." << endl;
 }

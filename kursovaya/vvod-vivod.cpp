@@ -1,19 +1,13 @@
 #include "header.h"
 
-ostream& shapka(ostream& stream)
-{
-	setlocale(LC_ALL, "rus");
-	stream << setw(15) << "Ñîðò"
-		<< setw(15) << "Öâåò"
-		<< setw(15) << "Âûñîòà"
-		<< setw(25) << "Äëèòåëüíîñòü ðîñòà"
-		<< setw(25) << "Äëèòåëüíîñòü öâåòåíèÿ"
-		<< setw(15) << "Ìàðêà" << endl;
-	return stream;
+ostream& shapka(ostream& stream) {
+    setlocale(LC_ALL, "rus");
+    stream << setw(15) << "Ð¡Ð¾Ñ€Ñ‚" << setw(15) << "Ð¦Ð²ÐµÑ‚" << setw(15) << "Ð’Ñ‹ÑÐ¾Ñ‚Ð°" << setw(25)
+           << "Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ñ€Ð¾ÑÑ‚Ð°" << setw(25) << "Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ñ†Ð²ÐµÑ‚ÐµÐ½Ð¸Ñ" << setw(15) << "ÐœÐ°Ñ€ÐºÐ°" << endl;
+    return stream;
 }
 
-
 ostream& dividing_line(ostream& stream) {
-	stream << setfill('-') << setw(120) << ' ' << setfill(' ');
-	return stream;
+    stream << setfill('-') << setw(120) << ' ' << setfill(' ');
+    return stream;
 }
